@@ -3,14 +3,15 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    exampleRouter = require('../routes/examples.server.routes');
+    adminRouter = require('../routes/adminRoutes'),
+    configUtil = require("./configUtil.js");
 
 module.exports.init = () => {
     /* 
         connect to database
         - reference README for db uri
     */
-    mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
+    mongoose.connect(configUtil.getDatabaseUri(), {
         useNewUrlParser: true
     });
     mongoose.set('useCreateIndex', true);
@@ -26,7 +27,7 @@ module.exports.init = () => {
     app.use(bodyParser.json());
 
     // add a router
-    app.use('/api/example', exampleRouter);
+    app.use('/admin', adminRouter);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
