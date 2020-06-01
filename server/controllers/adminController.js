@@ -3,6 +3,11 @@ const jwt = require('jsonwebtoken');
 const configUtil = require("../config/configUtil");
 const {NotFoundError} = require("../util/exceptions");
 
+exports.verifyUser = async (req, res) =>
+ {
+    return !!req.adminId;
+  }
+
 exports.get = async (req, res) => {
   jwt.verify(req.token, configUtil.getJWTSecret(), (err, authorizedData) => {
     if(err){
