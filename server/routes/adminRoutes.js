@@ -1,7 +1,9 @@
 const express = require('express'), 
     router = express.Router(),
-    adminController = require('../controllers/adminController');
-    jwt = require('jsonwebtoken')
+    adminController = require('../controllers/adminController'),
+    jwt = require('jsonwebtoken'),
+    LoginStrategy = require("../auth/login.js"),
+    passport = require("passport");
 
 const checkToken = (req, res, next) => {
         const header = req.headers['authorization'];
@@ -20,12 +22,12 @@ const checkToken = (req, res, next) => {
 
 router.get(
       "/",
-      checkToken,
+      passport.authenticate("verify", { session: false }),
       adminController.get
     );
 router.post(
     "/login",
-    adminController.Login
+    LoginStrategy.authenticateAdmin
 ); 
   
 module.exports = router;

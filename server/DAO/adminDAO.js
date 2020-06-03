@@ -1,9 +1,13 @@
 const Admin = require("../models/Admin.js").Model; 
 
-exports.getAll = async () => {
-    console.log("dao!");
-    let admin = await Admin.find({}).exec();
-    console.log("made past the db fetch")
-    console.log(admin);
-    return admin;
-  };
+exports.getByUsername = async (data) => {
+  const admin = await Admin.findOne({ username: data });
+    if (!admin) throw new NotFoundError();
+    return(admin);
+}
+
+exports.getByID = async (data) => {
+  const admin = await Admin.findOne({ _id: data });
+    if (!admin) throw new NotFoundError();
+    return(admin);
+}

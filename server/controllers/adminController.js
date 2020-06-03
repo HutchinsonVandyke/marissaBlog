@@ -3,21 +3,15 @@ const jwt = require('jsonwebtoken');
 const configUtil = require("../config/configUtil");
 const {NotFoundError} = require("../util/exceptions");
 
+exports.verifyUser = async (req, res) =>
+ {
+    return !!req.adminId;
+  }
+
 exports.get = async (req, res) => {
-  jwt.verify(req.token, configUtil.getJWTSecret(), (err, authorizedData) => {
-    if(err){
-        //If error send Forbidden (403)
-        console.log('ERROR: Could not connect to the protected route');
-        res.sendStatus(403);
-    } else {
-        //If token is successfully verified, we can send the autorized data 
-        res.json({
-            message: 'Successful log in',
-            authorizedData
-        });
-        console.log('SUCCESS: Connected to protected route');
-    }
-})
+  const admin = await Admin.findOne({ username: "marissa" });
+    if (!admin) throw new NotFoundError();
+    return admin;
 }
 
 exports.Login = async (req, res) => {
