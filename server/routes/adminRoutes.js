@@ -22,7 +22,7 @@ const checkToken = (req, res, next) => {
 
 router.get(
       "/",
-      checkToken,
+      passport.authenticate("verify", { session: false }),
       adminController.get
     );
 router.post(

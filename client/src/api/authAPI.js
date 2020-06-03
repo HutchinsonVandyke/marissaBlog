@@ -4,13 +4,12 @@ import Cookies from "js-cookie";
 
 
 const authenticate = async (username, password) => {
-    let axiosResponse = await API.post("/admin/login", {
+    let axiosResponse = await API.post("/auth/login", {
       username: username,
       password: password
     })
       .then(async response => {
         Cookies.set("jwt", response.data.token);
-        console.log("here")
         return { token: response.data.token };
       })
       .catch(error => {
@@ -21,7 +20,6 @@ const authenticate = async (username, password) => {
           error: "Invalid user/password!"
         };
       });
-    console.log(axiosResponse)
     return axiosResponse;
   };
 

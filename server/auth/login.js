@@ -24,5 +24,5 @@ exports.authenticateAdmin = (req, res, next) => {
         return res.json({ token: token, admin: admin });
       });
     }
-  )(req, res);
+  )(req, res, next);
 };

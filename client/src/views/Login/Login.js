@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./Login.css";
 import {authenticate} from "../../api/authAPI"
 import {
@@ -28,10 +28,8 @@ const Login = () => {
       return;
     }
     let authResponse = await authenticate(username, password);
-    console.log(authResponse)
     if (authResponse.token) {
       setSuccessfulLogin(true);
-      console.log("here at least")
     } else {
         console.log("here then")
       setError("Invalid username/password");
@@ -39,8 +37,8 @@ const Login = () => {
   };
 
   if (successfulLogin) {
-    //return <Redirect to="/dashboard" />;
-    console.log("SUCCESSFUL LOGIN HOLY SHIT")
+    return <Redirect to="/Home" />;
+    
   }
 
 
@@ -58,6 +56,7 @@ const Login = () => {
             icon
             style={{ backgroundColor: "white" }}
           >
+            
           </Header>
           <Divider hidden />
           <Segment raised color="orange">
