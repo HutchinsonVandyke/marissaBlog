@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import './Home.css';
+import './Admin.css';
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
-import { Container, Grid, Header, Icon, Card } from "semantic-ui-react";
+import { Container, Grid, Button, Header, Icon, Card } from "semantic-ui-react";
 
 function Home(props) {
+  const [goToCreateWork, setGoToCreateWork] = useState(false);
 
+  const openCreateWork = () => {
+    setGoToCreateWork(true);
+  }
+
+  if (goToCreateWork) {
+    return <Redirect to="/createWork" />;
+  }
   //props.adminView
-  if (props.adminView == true) {
-    console.log("penis")
-  }
-  else {
-    console.log("fuck!")
-  }
+ 
 
     return (
       <div className="main-container">
         <Container className="container">
         <Grid centered>
           <Grid.Row>
+            <Button onClick={openCreateWork}>Create Work</Button>
           </Grid.Row>
           <Grid.Row>
            

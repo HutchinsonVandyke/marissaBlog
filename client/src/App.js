@@ -1,8 +1,12 @@
 import React from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Login from "./views/Login/Login";
-import Home from "./views/Home/Home"
+import Home from "./views/Home/Home";
+import Admin from "./views/Admin/Admin"
+import ImageUploader from "./views/ImageUploader/ImageUploader";
+import CreateWork from "./views/Admin/createWork/CreateWork";
 import NotFound from "./views/NotFound";
+
 
 const App = () => {
   return (
@@ -10,6 +14,9 @@ const App = () => {
       <Switch>
         <Route exact path="/Login" component={Login} />
         <Route exact path="/Home" component={Home} />
+        <Route exact path="/admin" component={Admin} />
+        <Route exact path="/createWork" component={CreateWork} />
+        <Route exact path="/img" component={ImageUploader} />
         <Route exact path="/">
           <Redirect to="/Login" />
         </Route>
