@@ -37,7 +37,9 @@ const Login = () => {
   };
 
   if (successfulLogin) {
-    return <Redirect to="/admin" />;
+    return <Redirect to={{pathname: "/admin",
+            state: {isAdmin: true}              
+          }}/>;
     
   }
 

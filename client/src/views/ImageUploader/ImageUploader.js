@@ -82,6 +82,7 @@ const ImageUploader = (props) => {
   
   
     if (success) {
+      console.log(url)
       console.log('here')
       console.log('props.imgadded is ' + props.imageAdded)
       //debug stuff^

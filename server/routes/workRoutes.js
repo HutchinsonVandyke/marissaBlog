@@ -1,20 +1,27 @@
 const express = require('express'), 
     router = express.Router(),
-    workController = require('../controllers/workController'),
+    workController = require('../controllers/workController.js'),
     jwt = require('jsonwebtoken'),
     LoginStrategy = require("../auth/login.js"),
     passport = require("passport");
 
-
-
 router.get(
-      "/:name",
-      passport.authenticate("verify", { session: false }),
-      workController.get
+    "/",
+    workController.getAll
     );
 router.get(
-        "/getAll",
-        workController.getAll
+      "/:id",
+      workController.get
+    );
+router.delete(
+    "/:id",
+    passport.authenticate("verify", { session: false }),
+    workController.delete
+    );
+router.put(
+    "/:id",
+    passport.authenticate("verify", { session: false }),
+    workController.update
     );
 router.post(
     "/",

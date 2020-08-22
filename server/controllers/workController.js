@@ -14,11 +14,31 @@ exports.create = async (req, res) => {
   };
 
   exports.get = async (req, res) => {
-    const work = await Work.findOne({ name: req.name });
+    
+    const work = await Work.findOne({ _id: req.params.id });
       if (!work) throw new NotFoundError();
-      return work;
+      res.send(work);
   }
 
-  exports.getAll = async () => {
-    return await Work.find({}).exec();
+  exports.delete = async (req, res) => {
+    
+    const work = await Work.findOneAndDelete({ _id: req.params.id });
+      if (!work) throw new NotFoundError();
+      res.send(work);
+  }
+
+  exports.update = async (req, res) => {
+    
+    const work = await Work.findOneAndUpdate({ _id: req.params.id}, req.body, {
+      upsert: true,
+      useFindAndModify: false
+    });
+      if (!work) throw new NotFoundError();
+      res.send(work);
+  }
+
+  exports.getAll = async (req, res) => {
+    const works = await Work.find({}).exec();
+    console.log(works)
+    res.send(works);
   }

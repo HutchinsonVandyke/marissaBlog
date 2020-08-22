@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const configUtil = require("../config/configUtil");
 const {NotFoundError} = require("../util/exceptions");
 
-exports.verifyUser = async (req, res) =>
+exports.verifyAdmin = async (req, res) =>
  {
-    return !!req.adminId;
+    res.send(!!req.adminId);
   }
 
 exports.get = async (req, res) => {
