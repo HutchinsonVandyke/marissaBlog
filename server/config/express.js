@@ -2,9 +2,13 @@ const path = require('path'),
     express = require('express'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
+    cors = require('cors'),
     bodyParser = require('body-parser'),
     adminRouter = require('../routes/adminRoutes.js'),
     authRouter = require('../routes/authRoutes.js'),
+    imageRouter = require('../routes/imageRoutes.js'),
+    awsRouter = require('../controllers/awsController'),
+    workRouter = require('../routes/workRoutes.js'),
     configUtil = require("./configUtil.js");
     passport = require("../auth/passport.js");
 
@@ -24,13 +28,30 @@ module.exports.init = () => {
     //app.use(passport.initalize())
     // enable request logging for development debugging
     app.use(morgan('dev'));
+    var whitelist = ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:5000/']
+    var corsOptions = {
+        origin: function (origin, callback) {
+            //console.log(origin)
+            if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+            } else {
+            callback(new Error('Not allowed by CORS'))
+            }
+        }
+    }
+    app.use(cors(corsOptions));
     
     // body parsing middleware
     app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }))
 
     // add a router
+    app.use('/uploads', express.static('uploads'));
     app.use('/admin', adminRouter);
     app.use('/auth', authRouter);
+    app.use('/sign_s3', awsRouter.sign_s3);
+    app.use('/image', imageRouter);
+    app.use('/work', workRouter);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files

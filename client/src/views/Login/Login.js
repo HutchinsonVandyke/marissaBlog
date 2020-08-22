@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   if (successfulLogin) {
-    return <Redirect to="/Home" />;
+    return <Redirect to="/admin" />;
     
   }
 
