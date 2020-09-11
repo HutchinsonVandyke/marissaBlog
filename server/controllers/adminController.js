@@ -10,7 +10,7 @@ exports.verifyAdmin = async (req, res) =>
   }
 
 exports.get = async (req, res) => {
-  console.log('here')
+  
   const admin = await Admin.findOne({ username: "marissa" });
     if (!admin) {
       console.log('no admin found');

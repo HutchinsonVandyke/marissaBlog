@@ -21,7 +21,7 @@
   "author": "Dakota Rennemann",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.713.0",
+    "aws-sdk": "^2.751.0",
     "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
@@ -30,18 +30,18 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "firebase": "^7.15.0",
+    "firebase": "^7.20.0",
     "firebase-app": "0.0.1",
     "is-empty": "^1.2.0",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
-    "mocha": "^6.2.1",
+    "mocha": "^6.2.3",
     "mongo-seeding": "^3.4.1",
-    "mongoose": "^5.9.10",
-    "morgan": "^1.9.1",
+    "mongoose": "^5.10.5",
+    "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
-    "nodemon": "^1.18.10",
+    "nodemon": "^1.19.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -51,12 +51,12 @@
     "semantic-ui-react": "^0.88.2",
     "should": "^13.2.3",
     "supertest": "^4.0.2",
-    "uuid": "^8.2.0",
-    "validator": "^13.0.0"
+    "uuid": "^8.3.0",
+    "validator": "^13.1.1"
   },
   "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme",
   "devDependencies": {
-    "ts-node": "^8.9.1",
-    "typescript": "^3.8.3"
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
   }
 }

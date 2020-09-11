@@ -22,8 +22,7 @@ req.login(user, {session: false}, (err) => {
     
            
 // generate a signed son web token with the contents of user object and return it in the response
-console.log('inside auth routes /login')
-console.log(user)
+
 const token = jwt.sign({id: user.username}, configUtil.getJWTSecret());       
     return res.json({user, token});
         });
