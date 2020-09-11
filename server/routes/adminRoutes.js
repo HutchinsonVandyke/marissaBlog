@@ -22,9 +22,13 @@ const checkToken = (req, res, next) => {
 
 router.get(
       "/",
-      passport.authenticate("verify", { session: false }),
       adminController.get
     );
+router.get(
+    "/verify",
+    passport.authenticate("verify", { session: false }),
+    adminController.verifyAdmin
+      );
 router.post(
     "/login",
     LoginStrategy.authenticateAdmin

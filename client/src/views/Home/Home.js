@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
-import './Home.css';
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
-import { Container, Grid, Header, Icon, Card } from "semantic-ui-react";
+import ImageGrid from "../ImageGrid/ImageGrid.js";
+import InfoTab from "../InfoTab/InfoTab";
+import { Container, Grid, Button, Header, Icon, Card } from "semantic-ui-react";
 
 function Home(props) {
-
-  //props.adminView
-  if (props.adminView == true) {
-    console.log("penis")
-  }
-  else {
-    console.log("fuck!")
-  }
+  
+ 
 
     return (
       <div className="main-container">
-        <Container className="container">
-        <Grid centered>
-          <Grid.Row>
-          </Grid.Row>
-          <Grid.Row>
-           
-          </Grid.Row>
-          <Grid.Row className="LeftTab">
-            
-          </Grid.Row>
-          <Grid.Row>
-           
         
-          </Grid.Row>
+        <Grid>
+          
+          <Grid.Column width={2} floated='left'>
+          <InfoTab
+          atHome={true}
+          />
+          </Grid.Column>
+          <Grid.Column width={14} floated ='right'> 
+          
+          <ImageGrid adminView={false}/>
+          </Grid.Column>
+          
+          
+            
+    
+          
         </Grid>
-      </Container>
-
+        
+      
+      
       </div>
     );
   }

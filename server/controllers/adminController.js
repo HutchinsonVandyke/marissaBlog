@@ -3,15 +3,19 @@ const jwt = require('jsonwebtoken');
 const configUtil = require("../config/configUtil");
 const {NotFoundError} = require("../util/exceptions");
 
-exports.verifyUser = async (req, res) =>
+exports.verifyAdmin = async (req, res) =>
  {
-    return !!req.adminId;
+    
+    res.send(!!req.adminId);
   }
 
 exports.get = async (req, res) => {
+  console.log('here')
   const admin = await Admin.findOne({ username: "marissa" });
-    if (!admin) throw new NotFoundError();
-    return admin;
+    if (!admin) {
+      console.log('no admin found');
+      throw new NotFoundError()};
+    res.send(admin);
 }
 
 exports.Login = async (req, res) => {

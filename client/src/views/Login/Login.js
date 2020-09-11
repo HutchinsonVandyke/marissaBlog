@@ -32,12 +32,15 @@ const Login = () => {
       setSuccessfulLogin(true);
     } else {
         console.log("here then")
+        console.log(password)
       setError("Invalid username/password");
     }
   };
 
   if (successfulLogin) {
-    return <Redirect to="/admin" />;
+    return <Redirect to={{pathname: "/admin",
+            state: {isAdmin: true}              
+          }}/>;
     
   }
 
