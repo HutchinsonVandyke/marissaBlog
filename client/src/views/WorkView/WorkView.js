@@ -18,12 +18,13 @@ const WorkView = (props) => {
     const [updateWork, setUpdateWork] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [workDeleted, setWorkDeleted] = useState(false);
-    const [goToEditWork, setGoToEditWork] = useState(false)
-    //so will need to make a modal for the delete button
-    //so ppl dont just delete whoopsy fucking do
-    //also edit will take them to a version of createWork
-    //but it is editWork and then it just has same layout
-    //w pre-filled it labels and then it does a put req...easy
+    const [goToEditWork, setGoToEditWork] = useState(false);
+    const [playlistUrl, setPlaylistUrl] = useState(null);
+   
+
+    if (gotWorkData) {
+        console.log(workData)
+    }
 
     const Delete = () => {
         CloseDeleteModal();
@@ -35,7 +36,7 @@ const WorkView = (props) => {
     }
 
     if (goToEditWork) {
-        return <Redirect to={{pathname: "/editWork",
+        return <Redirect push to={{pathname: "/editWork",
                             state: {workData: workData}}}/>;
     }
 
@@ -108,13 +109,15 @@ const WorkView = (props) => {
             <Grid columns={3}> 
           
             <Grid.Column width={2}>
-                <InfoTab/>
+                <InfoTab atHome={false}/>
             </Grid.Column>
             <Grid.Column width={12}> 
                 
                 <img src={image} 
                 style={{
-                paddingTop: 25,    
+                paddingTop: 25,
+                paddingLeft: 25,
+                paddingRight: 25,    
                 maxWidth: '100%',
                 height: 'auto',}}
                 />
@@ -131,7 +134,11 @@ const WorkView = (props) => {
                     Delete Work 
                     <Icon name='trash'/>
                 </Button>
-
+                
+                {//apple music widget
+                }
+                <br/>
+                <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="350" style={{padding:25, width:'200%', maxWidth:660, overflow: 'hidden',background: 'transparent'}} sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src={workData.playlist}></iframe>
                 <p style={{
                 padding: 25,
                 fontFamily:'consolas',
@@ -142,6 +149,7 @@ const WorkView = (props) => {
                 <p><iframe 
                 width='900'
                 frameBorder='0'
+                style={{padding: 25}}
                 src={workData.text}></iframe></p>
             </Grid.Column>
             <Grid.Column width={2}>
@@ -200,17 +208,30 @@ const WorkView = (props) => {
             <Grid.Column width={12}> 
                 <img src={image} 
                 style={{
-                paddingTop: 25,    
+                paddingTop: 25,
+                paddingLeft: 25,
+                paddingRight: 25,    
                 maxWidth: '100%',
                 height: 'auto',}}
                 />
+
+                {//apple music widget}//
+    }
+                 <br/>
+                <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="350" style={{padding:25, width:'200%', maxWidth:660, overflow: 'hidden',background: 'transparent'}} sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src={workData.playlist}></iframe>
+                
+
                 <p style={{
                 padding: 25,
                 fontFamily:'consolas',
                 fontSize:'200%'
                 }}
                 >{workData.description}</p>
-                <p><iframe 
+                <p
+                 style={{
+                    padding: 25
+                    }}
+                ><iframe 
                 width='900'
                 frameBorder='0'
                 src={workData.text}></iframe></p>

@@ -32,6 +32,7 @@ const Login = () => {
       setSuccessfulLogin(true);
     } else {
         console.log("here then")
+        console.log(password)
       setError("Invalid username/password");
     }
   };

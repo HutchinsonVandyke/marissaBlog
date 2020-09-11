@@ -17,8 +17,16 @@ module.exports.init = () => {
         connect to database
         - reference README for db uri
     */
-    mongoose.connect(configUtil.getDatabaseUri(), {
-        useNewUrlParser: true
+
+   //mongodb+srv://hutchinsonrvandy:<password>@cluster0.bb6gh.mongodb.net/<dbname>?retryWrites=true&w=majority
+    //local connect = configUtil.getDatabaseUri()
+   mongoose.connect('mongodb+srv://hutchinsonrvandy:4783Hrvd@cluster0.bb6gh.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+        dbName:'marissablog',
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log('mongodb connected')
     });
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
@@ -31,7 +39,7 @@ module.exports.init = () => {
     var whitelist = ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:5000/', 'http://localhost:5000/work/']
     var corsOptions = {
         origin: function (origin, callback) {
-            //console.log(origin)
+            
             if (whitelist.indexOf(origin) !== -1) {
             callback(null, true)
             } else {

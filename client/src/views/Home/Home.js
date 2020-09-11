@@ -14,10 +14,12 @@ function Home(props) {
         
         <Grid>
           
-          <Grid.Column width={3} floated='left'>
-          <InfoTab/>
+          <Grid.Column width={2} floated='left'>
+          <InfoTab
+          atHome={true}
+          />
           </Grid.Column>
-          <Grid.Column width={13} floated ='right'> 
+          <Grid.Column width={14} floated ='right'> 
           
           <ImageGrid adminView={false}/>
           </Grid.Column>

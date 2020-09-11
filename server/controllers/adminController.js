@@ -5,13 +5,17 @@ const {NotFoundError} = require("../util/exceptions");
 
 exports.verifyAdmin = async (req, res) =>
  {
+    
     res.send(!!req.adminId);
   }
 
 exports.get = async (req, res) => {
+  console.log('here')
   const admin = await Admin.findOne({ username: "marissa" });
-    if (!admin) throw new NotFoundError();
-    return admin;
+    if (!admin) {
+      console.log('no admin found');
+      throw new NotFoundError()};
+    res.send(admin);
 }
 
 exports.Login = async (req, res) => {

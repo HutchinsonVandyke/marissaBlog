@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
       throw Error("username already taken");
     }
     const work = await new Work(req.body).save();
-    console.log(work)
+    
     res.send(work);
   };
 
@@ -39,6 +39,6 @@ exports.create = async (req, res) => {
 
   exports.getAll = async (req, res) => {
     const works = await Work.find({}).exec();
-    console.log(works)
+    if (!works) throw new NotFoundError();
     res.send(works);
   }

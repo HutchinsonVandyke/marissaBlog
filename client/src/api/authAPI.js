@@ -1,10 +1,11 @@
 import API from "./baseAPI.js";
 import Cookies from "js-cookie";
+import axios from "axios";
 //well the api post works but it still catches an error for some reason
 
 
 const authenticate = async (username, password) => {
-    let axiosResponse = await API.post("/auth/login", {
+    let axiosResponse = await axios.post("http://localhost:5000/auth/login", {
       username: username,
       password: password
     })
@@ -14,6 +15,7 @@ const authenticate = async (username, password) => {
       })
       .catch(error => {
         if (error.response) {
+          console.log(error.response);
           return { error: error.response.data.error };
         }
         return {

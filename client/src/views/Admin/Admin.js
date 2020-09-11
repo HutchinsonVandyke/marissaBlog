@@ -16,9 +16,11 @@ function Admin(props) {
   useEffect(() => {
     verifyAdmin().then(verified => {
       if (verified) {
+        console.log('verified')
         setVerified(true);
       }
       else {
+        console.log('not admin')
         setNotAdmin(true);
       }
     })
@@ -26,6 +28,7 @@ function Admin(props) {
 
 
   const verifyAdmin = async () => {
+    console.log('verify admin called')
       let axiosResponse = await axios.get("http://localhost:5000/admin/verify", {
         headers: { Authorization: `Bearer ${Cookies.get("jwt")}` }
       })
@@ -55,7 +58,7 @@ function Admin(props) {
 
 
   if (goToCreateWork) {
-    return <Redirect to="/createWork" />;
+    return <Redirect push to="/createWork" />;
   }
 
   const openGuestView = () => {
@@ -63,7 +66,7 @@ function Admin(props) {
   }
 
   if (goToGuest) {
-    return <Redirect to="/home" />;
+    return <Redirect push to="/home" />;
   }
   //props.adminView
  
@@ -73,10 +76,10 @@ function Admin(props) {
         
         <Grid>
           
-          <Grid.Column width={3} floated='left'>
-          <InfoTab/>
+          <Grid.Column width={2} floated='left'>
+          <InfoTab atHome={false}/>
           </Grid.Column>
-          <Grid.Column width={13} floated ='right'> 
+          <Grid.Column width={14} floated ='right'> 
           <Button icon labelPosition = 'left' floated='right' onClick={openCreateWork}>
             Create New Work
             <Icon name='add'/>

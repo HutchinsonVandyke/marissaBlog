@@ -37,7 +37,6 @@ const ImageUploader = (props) => {
   }
   // Perform the upload
   const handleUpload = (ev) => {
-    console.log(uploadInput)
     let file = uploadInput.files[0];
     if (file == undefined) {
       return;
@@ -46,7 +45,11 @@ const ImageUploader = (props) => {
     let fileParts = uploadInput.files[0].name.split('.');
     let fileName = fileParts[0];
     let fileType = fileParts[1];
-    console.log("Preparing the upload");
+    if (fileType != 'jpg' && fileType != 'png' && fileType != 'jpeg') {
+      alert('Please upload a photo of type: jpg, jpeg, png')
+      return;
+    }
+    //console.log("Preparing the upload");
      axios.post("http://localhost:5000/sign_s3",{
       fileName : fileName,
       fileType : fileType
@@ -57,7 +60,7 @@ const ImageUploader = (props) => {
       var urlData = returnData.url;
       //this.setState({url: url})
       setUrl(urlData)
-      console.log("Recieved a signed request " + signedRequest);
+      //console.log("Recieved a signed request " + signedRequest);
      // Put the fileType in the headers for the upload
       var options = {
          headers: {
@@ -66,7 +69,7 @@ const ImageUploader = (props) => {
       };
       axios.put(signedRequest,file,options)
       .then(result => {
-        console.log("Response from s3")
+        //console.log("Response from s3")
         //this.setState({success: true});
         setSuccess(true);
       })
@@ -82,9 +85,9 @@ const ImageUploader = (props) => {
   
   
     if (success) {
-      console.log(url)
-      console.log('here')
-      console.log('props.imgadded is ' + props.imageAdded)
+      //console.log(url)
+      //console.log('here')
+      //console.log('props.imgadded is ' + props.imageAdded)
       //debug stuff^
       //if(!props.imageAdded) {
 

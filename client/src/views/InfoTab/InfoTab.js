@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-const InfoTab = () => {
+const InfoTab = (props) => {
     const [goHome, setGoHome] = useState(false);
     const [goBio, setGoBio] = useState(false);
 
     const goToHome = () => {
         setGoHome(true);
     }
-
+    console.log(props)
     if(goHome) {
-        return <Redirect to="/Home"/>
+        if (props.atHome) {
+            return setGoHome(false);
+        }
+        else {
+            
+        return <Redirect push to="/Home"/>
+        }
     }
     
 return(
@@ -33,9 +39,9 @@ return(
                     cursor: 'pointer'}}
                     onClick={() => goToHome()}
                     
-                    >Work </p>
-        <p style={{paddingLeft:25, fontFamily:'consolas', fontSize:'160%'}}>Bio</p>
-        <p style={{paddingLeft:25, fontFamily:'consolas', fontSize:'160%'}}>CV</p>
+                    >Works </p>
+        <p style={{paddingLeft:25, fontFamily:'consolas', fontSize:'160%', cursor: 'pointer'}}>Bio</p>
+        <p style={{paddingLeft:25, fontFamily:'consolas', fontSize:'160%', cursor: 'pointer'}}>CV</p>
     </div>
 )
 }

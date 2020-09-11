@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import WorkView from '../WorkView/WorkView'
-import { Route, Switch, Redirect  } from 'react-router-dom';
+import { Route, Switch, Redirect, Link  } from 'react-router-dom';
+import {Image} from 'semantic-ui-react'
 
 const ImageGrid = (props) => {
     //im grabbing whole works...need to just get works
@@ -23,7 +24,7 @@ const ImageGrid = (props) => {
 
      if (workIsClicked && workClicked != null) {
         return <Redirect 
-        to={{pathname: `/viewWork/${workClicked._id}`,
+        push to={{pathname: `/viewWork/${workClicked._id}`,
             state: {isAdmin: props.adminView}
             }}
         />
@@ -60,28 +61,37 @@ const ImageGrid = (props) => {
             
             return (
                 
-                <img  
+                <img
+                
                 className="workCard"
                 src ={curWork.images[0]}
                 onClick={() => openWorkView(curWork)}
                 style={{
                     cursor: 'pointer',
-                    maxWidth: '50%',
+                    maxWidth: '33%',
                     height: 'auto',
-                    border: '5px white'
+                    border: '5px white',
+                    padding: 5
                 }} 
+                
                 />
                 
             );
         })
         return (
-            <div style ={{padding:25}} >
+            <div style ={{paddingTop:25,
+                        paddingBottom:25,
+                        paddingRight:25,
+                        paddingLeft:15
+            }} >
+                
                 {grid}
+                
                 </div>
         )
     }
     else {
-        console.log('here')
+        
     return (
         <div>
             <img style ={{padding:1}} src ={"https://marissaderrickblog.s3.amazonaws.com/WIN_20200728_19_11_42_Pro"}/>

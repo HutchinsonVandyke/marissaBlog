@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from 'axios';
 import Cookies from "js-cookie";
 import ImageUploader from "../../ImageUploader/ImageUploader"
 import FileUploader from "../../FileUploader/FileUploader"
 import ImagePreview from "../createWork/ImagePreview"
 
-import { Container, Grid, Form, Input, Button, Radio, Field, Modal, Card } from "semantic-ui-react";
+import { Container, Grid, Form, Input, Button, Radio, Icon, Modal, Card } from "semantic-ui-react";
 
 const EditWork = (props) => {
     const [name, setName] = useState(null);
@@ -26,7 +26,16 @@ const EditWork = (props) => {
     const [workAdded, setWorkAdded] = useState(false);
     const [workData, setWorkData] = useState(null);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [cancel, setCancel] = useState(false);
 
+    if (cancel) {
+      return <Redirect push to="/admin" />;
+    }
+
+    const Cancel = () => {
+      setCancel(true);
+    }
+    
     if (workData == null) {
         setWorkData(props.location.state.workData);
         setDataLoaded(true);
@@ -49,7 +58,7 @@ const EditWork = (props) => {
 
     if (workAdded) {
       alert("Your work has been updated")
-      return <Redirect to="/admin" />;
+      return <Redirect push to="/admin" />;
     }
 
 
@@ -120,6 +129,12 @@ const EditWork = (props) => {
       setImages(copy);
     }
 
+    const removeImage = (index) => {
+        let copy = images;
+        copy.splice(index, 1);
+        setImages(copy);
+    }
+
     const OpenPhotoModal = () => {
         setShowPhotoModal(true);
     }
@@ -167,30 +182,31 @@ const EditWork = (props) => {
                 <label>Type</label>
                 <Form.Field
                     control={Radio}      
-                    label='Playlist'
+                    label='Playlist, do copy embed code, then just put playlist url no quotes'
                     value='Playlist'
-                    checked={setIsPlaylist}
+                    checked={() => setIsPlaylist(true)}
                     
                 />
                 <Form.Field
                     control={Radio} 
                     label='Writing'
                     value='Writing'
-                    checked={setIsWriting}
+                    checked={() => setIsWriting(true)}
                 
                 />
                 <Form.Field
                     control={Radio}   
                     label='Photography'
                     value='Photography'
-                    checked={setIsPhotography}
+                    checked={() => setIsPhotography(true)}
                     
                 />
                 <Form.Field
                     control={Radio} 
                     label='Other/Combination'
                     value='Combination'
-                    checked={setIsOther}
+                    checked={() => setIsOther(true)
+                    }
                     
                 />
                 </Form.Group>
@@ -227,11 +243,14 @@ const EditWork = (props) => {
                 
                 <ImagePreview 
                 images = {images}
+                editMode = {true}
+                removeImage = {removeImage}
                 />
                 </Form.Group>
                 
                 <Form.Group>
                   <Button color = 'yellow' onClick={editWork}> Submit </Button>
+                  <Button icon labelPosition= 'right' onClick={() => Cancel()}> Cancel <Icon name="remove"/> </Button>
                 </Form.Group>
               </Form>
             </Grid.Row>

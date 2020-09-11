@@ -6,7 +6,7 @@ import ImageUploader from "../../ImageUploader/ImageUploader"
 import FileUploader from "../../FileUploader/FileUploader"
 import ImagePreview from "./ImagePreview"
 import './CreateWork.css';
-import { Container, Grid, Form, Input, Button, Radio, Field, Modal, Card } from "semantic-ui-react";
+import { Container, Grid, Form, Input, Button, Radio, Field, Modal,Icon, GridColumn } from "semantic-ui-react";
 
 const CreateWork = (props) => {
     const [name, setName] = useState(null);
@@ -24,10 +24,19 @@ const CreateWork = (props) => {
     const [showFileModal, setShowFileModal] = useState(false);
     const [fileAdded, setFileAdded] = useState(false);
     const [workAdded, setWorkAdded] = useState(false);
+    const [cancel, setCancel] = useState(false);
 
     if (workAdded) {
       alert("Your work has been uploaded and will now show on front page")
       return <Redirect to="/admin" />;
+    }
+
+    if (cancel) {
+      return <Redirect to="/admin" />;
+    }
+
+    const Cancel = () => {
+      setCancel(true);
     }
 
 
@@ -145,7 +154,7 @@ const CreateWork = (props) => {
                 <label>Type</label>
                 <Form.Field
                     control={Radio}      
-                    label='Playlist'
+                    label='Playlist, do copy embed code, then just put playlist url no quotes'
                     value='Playlist'
                     checked={setIsPlaylist}
                     
@@ -205,11 +214,13 @@ const CreateWork = (props) => {
                 
                 <ImagePreview 
                 images = {images}
+                editMode = {false}
                 />
                 </Form.Group>
                 
                 <Form.Group>
                   <Button color = 'yellow' onClick={addWork}> Submit </Button>
+                  <Button icon labelPosition= 'right' onClick={() => Cancel()}> Cancel <Icon name="remove"/> </Button>
                 </Form.Group>
               </Form>
             </Grid.Row>
