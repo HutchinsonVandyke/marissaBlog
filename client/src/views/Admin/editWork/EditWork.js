@@ -183,7 +183,7 @@ const EditWork = (props) => {
                 <label>Type</label>
                 <Form.Field
                     control={Radio}      
-                    label='Playlist, do copy embed code, then just put playlist url no quotes'
+                    label='Playlist'
                     value='Playlist'
                     checked={() => setIsPlaylist(true)}
                     
@@ -224,7 +224,7 @@ const EditWork = (props) => {
                 <Form.Group widths="equal">
                 <Form.Field
                     control={Input}
-                    label="Playlist"
+                    label="Playlist, do copy embed code, then just put playlist url no quotes"
                     placeholder="Apple music playlist url"
                     value={playlist}
                     fluid
