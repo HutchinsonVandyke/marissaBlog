@@ -20,7 +20,7 @@ module.exports.init = () => {
 
    //mongodb+srv://hutchinsonrvandy:<password>@cluster0.bb6gh.mongodb.net/<dbname>?retryWrites=true&w=majority
     //local connect = configUtil.getDatabaseUri()
-   mongoose.connect('mongodb+srv://hutchinsonrvandy:4783Hrvd@cluster0.bb6gh.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+   mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://hutchinsonrvandy:4783Hrvd@cluster0.bb6gh.mongodb.net/<dbname>?retryWrites=true&w=majority', {
         dbName:'marissablog',
         useNewUrlParser: true,
         useUnifiedTopology: true

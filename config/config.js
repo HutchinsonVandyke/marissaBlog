@@ -1,7 +1,7 @@
 module.exports = {
     db: {
       uri:
-      'mongodb://127.0.0.1:27017/hutch'
+      'mongodb+srv://hutchinsonrvandy:4783Hrvd@cluster0.bb6gh.mongodb.net/<dbname>?retryWrites=true&w=majority'
     },
     jwtSecret: "4688D7A784E4176F12DIDSJ7F00D5742225421",
     AWS: {
