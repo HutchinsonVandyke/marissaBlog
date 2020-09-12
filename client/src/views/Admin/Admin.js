@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Admin.css';
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
+import API from "../../api/baseAPI";
 import Cookies from 'js-cookie';
 import ImageGrid from "../ImageGrid/ImageGrid.js";
 import InfoTab from "../InfoTab/InfoTab";
@@ -29,7 +30,7 @@ function Admin(props) {
 
   const verifyAdmin = async () => {
     console.log('verify admin called')
-      let axiosResponse = await axios.get("http://localhost:5000/admin/verify", {
+      let axiosResponse = await API.get("/admin/verify", {
         headers: { Authorization: `Bearer ${Cookies.get("jwt")}` }
       })
         .then(async response => {

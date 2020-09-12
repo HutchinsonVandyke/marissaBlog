@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API from '../../api/baseAPI'
 import {Button} from 'semantic-ui-react'
 import Image from 'semantic-ui-react'
 import { PromiseProvider } from 'mongoose';
@@ -50,7 +51,7 @@ const ImageUploader = (props) => {
       return;
     }
     //console.log("Preparing the upload");
-     axios.post("http://localhost:5000/sign_s3",{
+     API.post("/sign_s3",{
       fileName : fileName,
       fileType : fileType
     })

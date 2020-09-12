@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import API from '../../api/baseAPI'
 import WorkView from '../WorkView/WorkView'
 import { Route, Switch, Redirect, Link  } from 'react-router-dom';
 import {Image} from 'semantic-ui-react'
@@ -31,7 +32,7 @@ const ImageGrid = (props) => {
     } 
     
     const getImages = () => {
-        axios.get("http://localhost:5000/work/")
+        API.get("/work/")
         .then((response) =>{
             let copy = [];
             for (let i = 0; i < response.data.length; i++) {
@@ -42,6 +43,7 @@ const ImageGrid = (props) => {
             return copy;
         })
         .catch((error) => {
+            console.log('sent here')
             if (error.response) {
                 return { error: error.response.data.error };
               }
@@ -94,7 +96,7 @@ const ImageGrid = (props) => {
         
     return (
         <div>
-            <img style ={{padding:1}} src ={"https://marissaderrickblog.s3.amazonaws.com/WIN_20200728_19_11_42_Pro"}/>
+            
         </div>
     );
     }

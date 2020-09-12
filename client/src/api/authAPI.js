@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 const authenticate = async (username, password) => {
-    let axiosResponse = await axios.post("http://localhost:5000/auth/login", {
+    let axiosResponse = await API.post("/auth/login", {
       username: username,
       password: password
     })

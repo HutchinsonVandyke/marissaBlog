@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API from '../../api/baseAPI'
 import InfoTab from "../InfoTab/InfoTab";
 import { Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -50,7 +51,7 @@ const WorkView = (props) => {
 
     if (deleteWork) {
         
-            axios.delete(`http://localhost:5000/work/${props.match.params.id}`,  {
+            API.delete(`/work/${props.match.params.id}`,  {
                 headers: { Authorization: `Bearer ${Cookies.get("jwt")}` },
             })
             .then((response) =>{
@@ -82,7 +83,7 @@ const WorkView = (props) => {
     }
 
     const getWorkData = async () => {
-        axios.get(`http://localhost:5000/work/${props.match.params.id}`)
+        API.get(`/work/${props.match.params.id}`)
         .then((response) =>{
             setWorkData(response.data);
             setImage(response.data.images[0]);

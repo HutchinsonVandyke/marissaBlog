@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from "react-router-dom";
 import axios from 'axios';
+import API from "../../../api/baseAPI";
 import Cookies from "js-cookie";
 import ImageUploader from "../../ImageUploader/ImageUploader"
 import FileUploader from "../../FileUploader/FileUploader"
@@ -78,7 +79,7 @@ const EditWork = (props) => {
       }
       
       
-      axios.put(`http://localhost:5000/work/${workData._id}`, workData_,  {
+      API.put(`/work/${workData._id}`, workData_,  {
         headers: { Authorization: `Bearer ${Cookies.get("jwt")}` },
       })
       .then((response) => {

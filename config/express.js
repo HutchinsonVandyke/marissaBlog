@@ -36,10 +36,10 @@ module.exports.init = () => {
     //app.use(passport.initalize())
     // enable request logging for development debugging
     app.use(morgan('dev'));
-    var whitelist = ['https://marissaderrickblog.herokuapp.com', 'http://localhost:3000', 'http://localhost:5000', 'http://localhost:5000/', 'http://localhost:5000/work/']
+    var whitelist = ['https://marissaderrickblog.herokuapp.com', 'http://localhost:3000', 'http://localhost:5000', 'http://localhost:5000/', 'http://localhost:5000/work/', undefined]
     var corsOptions = {
         origin: function (origin, callback) {
-            
+            console.log(origin)
             if (whitelist.indexOf(origin) !== -1) {
             callback(null, true)
             } else {
