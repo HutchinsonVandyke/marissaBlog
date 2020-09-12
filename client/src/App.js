@@ -22,7 +22,7 @@ const App = () => {
         <Route exact path="/viewWork/:id" component={WorkView} />
         <Route exact path="/img" component={ImageUploader} />
         <Route exact path="/">
-          <Redirect to="/Login" />
+          <Redirect to="/Home" />
         </Route>
         <Route component={NotFound}/>
       </Switch>
