@@ -1,7 +1,7 @@
 import API from "./baseAPI.js";
 import Cookies from "js-cookie";
 import axios from "axios";
-//well the api post works but it still catches an error for some reason
+
 
 
 const authenticate = async (username, password) => {
