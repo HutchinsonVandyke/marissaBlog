@@ -12,7 +12,7 @@ function Home(props) {
     return (
       <div className="main-container">
         
-        <Grid>
+        <Grid doubling columns={2}>
           
           <Grid.Column width={2} floated='left'>
           <InfoTab
