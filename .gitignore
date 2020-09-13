@@ -19,6 +19,7 @@ client/build
 .env.development.local
 .env.test.local
 .env.production.local
+/config/config.js
 config/config.js
 
 npm-debug.log*
