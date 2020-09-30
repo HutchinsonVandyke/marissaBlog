@@ -20,6 +20,7 @@ passport.use("local",
 return adminModel.findOne({username: username, password: password})
            .then(admin=> {
           if (admin) {
+            
               return done(null, admin, {
                 message: "Logged in successfully"
                 });
@@ -48,8 +49,10 @@ passport.use(
       },
       async (req, jwtPayload, done) => {
         
+        
         req.adminId = jwtPayload.id;
-        if (await adminDAO.getByUsername(jwtPayload.id)) {
+        
+        if (await adminDAO.get(req.adminId)) {
           return done(null, true);
         } else {
           return done("Invalid token?");

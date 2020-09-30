@@ -9,7 +9,7 @@ const path = require('path'),
     imageRouter = require('../routes/imageRoutes.js'),
     awsRouter = require('../controllers/awsController'),
     workRouter = require('../routes/workRoutes.js'),
-    configUtil = require("./configUtil.js");
+    configUtil = require("./configUtil.js"),
     passport = require("../auth/passport.js");
 
 module.exports.init = () => {

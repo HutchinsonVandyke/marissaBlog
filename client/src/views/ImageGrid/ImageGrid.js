@@ -58,7 +58,6 @@ const ImageGrid = (props) => {
 
     let grid;
     if (works != null) {
-        
         grid = works.map(function(curWork) {
             
             return (
@@ -70,7 +69,7 @@ const ImageGrid = (props) => {
                 onClick={() => openWorkView(curWork)}
                 style={{
                     cursor: 'pointer',
-                    maxWidth: '33%',
+                    maxWidth: '50%',
                     height: 'auto',
                     border: '5px white',
                     padding: 5
