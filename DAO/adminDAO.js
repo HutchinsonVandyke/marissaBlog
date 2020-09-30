@@ -8,6 +8,13 @@ exports.getByUsername = async (req) => {
     return admin;
 }
 
+exports.get = async (id) => {
+  const admin = await Admin.findById(id)
+  if (!admin) return false;
+  return admin;
+
+}
+
 exports.getByID = async (req, res) => {
   console.log(req);
   const admin = await Admin.findOne({ _id: req });

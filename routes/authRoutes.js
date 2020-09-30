@@ -23,8 +23,8 @@ req.login(user, {session: false}, (err) => {
            
 // generate a signed son web token with the contents of user object and return it in the response
 
-const token = jwt.sign({id: user.username}, configUtil.getJWTSecret());       
-    return res.json({user, token});
+const token = jwt.sign({id: user.id}, configUtil.getJWTSecret());       
+    return res.json({user: user, token: token});
         });
     })(req, res, next);
 });
